@@ -1,4 +1,4 @@
-package lib.ijoic.image_tool.scale;
+package lib.ijoic.image_tool.color;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -11,28 +11,27 @@ import lib.ijoic.image_tool.annotation.NonNull;
 import lib.ijoic.image_tool.annotation.Nullable;
 
 /**
- * Scale utils.
+ * Color utils.
  *
  * @author VerstSiu verstsiu@126.com
- * @date 2017/10/6 10:27
+ * @date 2017/10/6 14:30
  * @version 1.0
  */
-class ScaleUtils {
+class ColorUtils {
 
-  private static final int MIN_CONFIG_PARAM_SIZE = 3;
+  private static final int MIN_CONFIG_PARAM_SIZE = 2;
 
-  private static final int INDEX_FOLDER = 0;
-  private static final int INDEX_FILE_NAME = 1;
-  private static final int INDEX_IMAGE_SIZE = 2;
+  private static final int INDEX_SUFFIX = 0;
+  private static final int INDEX_COLOR = 1;
 
   /**
-   * Returns scale configs.
+   * Returns color configs.
    *
    * @param file config file.
    */
   @NonNull
-  static List<ScaleConfig> readScaleConfigs(@NonNull String file) {
-    List<ScaleConfig> configs = new ArrayList<>();
+  static List<ColorConfig> readColorConfigs(@NonNull String file) {
+    List<ColorConfig> configs = new ArrayList<>();
     InputStream is = null;
 
     try {
@@ -52,11 +51,10 @@ class ScaleUtils {
         configParts = configLine.split(" ");
 
         if (configParts.length >= MIN_CONFIG_PARAM_SIZE) {
-          ScaleConfig config = new ScaleConfig();
+          ColorConfig config = new ColorConfig();
 
-          config.setFolder(configParts[INDEX_FOLDER]);
-          config.setFileName(configParts[INDEX_FILE_NAME]);
-          config.setSize(readInt(configParts[INDEX_IMAGE_SIZE], 0));
+          config.setSuffix(configParts[INDEX_SUFFIX]);
+          config.setColor(readColor(configParts[INDEX_COLOR], 0));
 
           configs.add(config);
         }
@@ -68,10 +66,10 @@ class ScaleUtils {
     return configs;
   }
 
-  private static int readInt(@Nullable String text, int defValue) {
+  private static int readColor(@Nullable String text, int defValue) {
     if (text != null && !text.isEmpty()) {
       try {
-        return Integer.parseInt(text, 10);
+        return Integer.parseInt(text, 16);
       } catch (NumberFormatException e) {
         e.printStackTrace();
       }
@@ -79,5 +77,5 @@ class ScaleUtils {
     return defValue;
   }
 
-  private ScaleUtils() {}
+  private ColorUtils() {}
 }

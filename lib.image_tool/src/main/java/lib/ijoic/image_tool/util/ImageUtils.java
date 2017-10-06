@@ -7,6 +7,7 @@ import java.awt.geom.AffineTransform;
 import java.awt.image.AffineTransformOp;
 import java.awt.image.BufferedImage;
 import java.awt.image.RenderedImage;
+import java.awt.image.WritableRaster;
 import java.io.File;
 import java.io.IOException;
 
@@ -100,6 +101,46 @@ public class ImageUtils {
     g.dispose();
 
     return newImage;
+  }
+
+  /**
+   * Fill color with image.
+   *
+   * @param src source file.
+   * @param dst dst file.
+   * @param color color.
+   */
+  public static void fillColor(@NonNull String src, @NonNull String dst, int color) {
+    try {
+      BufferedImage bufferedImage = ImageIO.read(new File(src));
+
+      fillColor(bufferedImage, color);
+
+      ImageIO.write(bufferedImage, "PNG", new File(dst));
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
+  }
+
+  private static void fillColor(@NonNull BufferedImage image, int color) {
+    int width = image.getWidth();
+    int height = image.getHeight();
+    WritableRaster raster = image.getRaster();
+
+//    int a = (color >> 24) & 0xFF;
+    int r = (color >> 16) & 0xFF;
+    int g = (color >> 8) & 0xFF;
+    int b = color & 0xFF;
+
+    for (int x = 0; x < width; ++x) {
+      for (int y = 0; y < height; ++y) {
+        int[] pixel = raster.getPixel(x, y, (int[]) null);
+        pixel[0] = r;
+        pixel[1] = g;
+        pixel[2] = b;
+        raster.setPixel(x, y, pixel);
+      }
+    }
   }
 
   private ImageUtils() {}

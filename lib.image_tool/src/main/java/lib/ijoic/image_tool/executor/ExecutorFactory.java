@@ -1,6 +1,7 @@
 package lib.ijoic.image_tool.executor;
 
 import lib.ijoic.image_tool.annotation.NonNull;
+import lib.ijoic.image_tool.color.ColorExecutor;
 import lib.ijoic.image_tool.scale.ScaleExecutor;
 
 /**
@@ -13,6 +14,7 @@ import lib.ijoic.image_tool.scale.ScaleExecutor;
 public class ExecutorFactory {
 
   private static final String COMMAND_SCALE = "scale";
+  private static final String COMMAND_COLOR = "color";
 
   /**
    * Returns executor.
@@ -27,6 +29,9 @@ public class ExecutorFactory {
       switch (command) {
         case COMMAND_SCALE:
           return new ScaleExecutor();
+
+        case COMMAND_COLOR:
+          return new ColorExecutor();
 
         default:
       }

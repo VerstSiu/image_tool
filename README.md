@@ -5,6 +5,7 @@ Image tool for android launcher and other icons.
 ## Features
 
 * scale
+* color
 
 ## Scale
 
@@ -47,6 +48,44 @@ res/mipmap-xxxhdpi ic_launcher.png 192
 ```
 
 <image alt="scale_output" src="screen_shots/scale_output.png" />
+
+## Color
+
+Command line:
+
+```java
+
+java -jar lib.image_tool.jar color {src|src_root} {dst_root} {dst_config}
+
+```
+
+Config:
+
+```
+
+[{suffix}] {color(like FF0000)}
+..
+
+```
+
+Sample:
+
+<image alt="src" src="export/1.0/src/title_icons/ic_alarm_add.png" />
+
+```
+
+java -jar lib.image_tool.jar color src/title_icons icon_pair/title_icons icon_pair/title_icon.inf
+
+```
+
+```
+
+ cccccc
+pressed 999999
+
+```
+
+<image alt="color_output" src="screen_shots/color_output.png" />
 
 ## License
 

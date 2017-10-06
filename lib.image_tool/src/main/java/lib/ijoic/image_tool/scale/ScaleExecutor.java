@@ -34,7 +34,7 @@ public class ScaleExecutor implements Executor {
     List<ScaleConfig> configs;
 
     if (root == null || !checkAndMakeRootDir(root) || configPath == null
-        || (configs = ScaleUtils.readClipConfigs(configPath)).isEmpty()) {
+        || (configs = ScaleUtils.readScaleConfigs(configPath)).isEmpty()) {
       return;
     }
     String folder;
