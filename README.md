@@ -11,7 +11,7 @@ Image tool for android launcher and other icons.
 
 Command line:
 
-```java
+```
 
 java -jar lib.image_tool.jar scale {src} {dst_root} {dst_config}
 
@@ -53,7 +53,7 @@ res/mipmap-xxxhdpi ic_launcher.png 192
 
 Command line:
 
-```java
+```
 
 java -jar lib.image_tool.jar color {src|src_root} {dst_root} {dst_config}
 
