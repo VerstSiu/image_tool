@@ -46,7 +46,7 @@ res/mipmap-xxxhdpi ic_launcher.png 192
 
 ```
 
-<image alt="scale_output" src="screen_shots/scale_output.png" width="320" />
+<image alt="scale_output" src="screen_shots/scale_output.png" />
 
 ## License
 
